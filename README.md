@@ -1,6 +1,7 @@
-# EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resistor
-
-
+# EXPERIMENT-NO-03-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resistor
+## NAME : RISHVANTH S
+## ROLL NO.: 212221080067
+## DATE : 08/03/2024
 ## AIM: 
 To interface an FSR(force sensitive resistor) and scale the output voltage obtained to pressure applied 
  
@@ -11,7 +12,6 @@ To interface an FSR(force sensitive resistor) and scale the output voltage obtai
 4.	USB Interfacing cable 
 5.	Connecting wires 
 
-
 ### THEORY: 
 FSRs are basically a resistor that changes its resistive value (in ohms Ω) depending on how much it is pressed. These sensors are fairly low cost, and easy to use. They also vary some from sensor to sensor perhaps 10%. FSR's resistance changes as more pressure is applied. When there is no pressure, the sensor looks like an infinite resistor (open circuit), as the pressure increases, the resistance goes down. This graph indicates approximately the resistance of the sensor at different force measurements.
  
@@ -20,13 +20,7 @@ FSRs are basically a resistor that changes its resistive value (in ohms Ω) depe
 
 ### FIGURE 01 GRAPH OF FORCE vs RESISTANCE **
 
-
-
-
 ![image](https://user-images.githubusercontent.com/36288975/163532957-82d57567-a1c3-48c5-8a87-7ea66d6fca49.png)
-
-
-
 
 ### FIGURE 02 FORCE SENSITIVE RESITOR FOIL DISC TYPE  
 
@@ -45,22 +39,11 @@ The easiest way to measure a resistive sensor is to connect one end to power and
 ****Where R= 1KΩ in this experiment 
 ****That is, the voltage is proportional to the inverse of the FSR resistance.
 
-
-
-
-
-
-
-
-
-
 ![image](https://user-images.githubusercontent.com/36288975/163532979-a2a5cb5c-f495-442c-843e-bebb82737a35.png)
-
-
 
 ### FIGURE-03 CIRCUIT DIAGRAM
 
-
+![Screenshot (48)](https://github.com/srishvanths/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/161055755/17cfce93-daa5-410d-8d7f-30a8bc97e3ef)
 
 ### PROCEDURE:
 1.	Connect the circuit as per the circuit diagram 
@@ -76,33 +59,54 @@ The easiest way to measure a resistive sensor is to connect one end to power and
 
 
 ### PROGRAM 
- *your roll no 
- * your name 
- * department and year 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
 
-![image](https://user-images.githubusercontent.com/36288975/188804653-a3154e8e-2655-46f2-9dcd-f425dd1ba109.png)
-
+```
+int LED=7;
+int FSR;
+void setup()
+{
+  pinMode(LED, OUTPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  FSR=analogRead(A0);
+  Serial.print("Raw Value: ");
+  Serial.println(FSR);
+  delay(500);
+  int m;
+  m=map(FSR,0,159,0,10);
+  Serial.print("Mapped value: ");
+  Serial.println(m);
+  
+  if(FSR>50)
+  {
+    digitalWrite(LED, HIGH);
+    delay(500); 
+    digitalWrite(LED, LOW);
+    delay(500);
+  }
+}
+```
 
 ### TABLE -02 standard deviation table 
+
+![image](https://github.com/srishvanths/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/161055755/abc113f7-c25b-4a39-8ec0-c1673b57976b)
+
+### GRAPH
+
+![image](https://github.com/srishvanths/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/161055755/2159ad68-83d4-4249-84d7-888e6a7a764d)
+
+### VALUES
+
+![Screenshot (50)](https://github.com/srishvanths/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/161055755/635163bd-53c7-49e8-ab31-d5595bdae319)
+
+### SCHEMATIC DIAGRAM
+
+![Screenshot (49)](https://github.com/srishvanths/EXPERIMENT-NO--04-PRESSURE-MEASUREMENT-USING-ARDUINO-AIM-To-interface-an-FSR-force-sensitive-resist/assets/161055755/9d26c7b1-27b4-429d-856e-1d630edf3ba9)
+
 ### Population Standard Deviation
 The population standard deviation, the standard definition of σ, is used when an entire population can be measured, and is the square root of the variance of a given data set. In cases where every member of a population can be sampled, the following equation can be used to find the standard deviation of the entire population:
-
-
 
 Where
 xi is an individual value
@@ -114,19 +118,5 @@ For those unfamiliar with summation notation, the equation above may seem daunti
 EX:           μ = (1+3+4+7+8) / 5 = 4.6        
 σ = √[(1 - 4.6)2 + (3 - 4.6)2 + ... + (8 - 4.6)2)]/5
 σ = √(12.96 + 2.56 + 0.36 + 5.76 + 11.56)/5 = 2.577
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### RESULTS : Arduino uno is interfaced with FSR and output values are indicated on a graph.
